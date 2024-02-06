@@ -6,7 +6,7 @@
 
 ## Description
 
-A website to ask for love ~
+A website for your valentine ~
 
 Inspired from this [website](https://valentine.mewtru.com/)
 
@@ -17,4 +17,6 @@ Inspired from this [website](https://valentine.mewtru.com/)
 
 ## How to modify?
 
-- Just read `src/content/loves/main.md` to change the text / image
+- [CONTENT] Just read `src/content/loves/main.md` to change the text / image
+- [COLOR] Just modify it directly on `tailwind.config.mjs`
+- [FONT] Just modify it directly on `font.css` and `tailwind.config.mjs`

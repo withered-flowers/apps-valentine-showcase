@@ -1,0 +1,3 @@
+/* Change the imported font here and extend it on tailwind.config.mjs */
+@import "@fontsource/meow-script";
+@import "@fontsource/rancho";

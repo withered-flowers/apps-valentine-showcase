@@ -14,8 +14,8 @@ export default {
 				"tertiary-mono": "#C6E0F6",
 			},
 			fontFamily: {
-				meow: ["Meow Script", ...defaultTheme.fontFamily.sans],
-				rancho: ["Rancho", ...defaultTheme.fontFamily.sans],
+				primary: ["Meow Script", ...defaultTheme.fontFamily.sans],
+				secondary: ["Rancho", ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},
