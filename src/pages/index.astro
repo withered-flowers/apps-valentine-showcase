@@ -1,29 +1,23 @@
 ---
 import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
 import BaseLayout from "@/layouts/base.astro";
-import mochaLoveYou from "@/assets/mocha-love-you.gif";
-import milkMochaHug from "@/assets/milk-mocha-hug.gif";
 import github from "@/assets/github.svg";
 
-const title = "Will you be my valentine?";
+const { data } = await getEntry("loves", "main");
+const {
+  title,
+  openingPhrase,
+  acceptedPhrase,
+  rejectionText,
+  acceptText,
+  pendingImage,
+  acceptedImage,
+} = data;
 ---
 
 <script>
-  let currentIndex = 0;
-  const arrTextButtonNo = [
-    "No",
-    "You sure?",
-    "Really sure?",
-    "Positive??",
-    "Pwetty pwease?",
-    "Think about it?",
-    "If you say no, I'll be sad T_T",
-    "So sad ...",
-    "So so so sad...",
-    "Ok fine, I'll stop asking",
-    "Just kidding, PLEASE SAY YES",
-    "You break my heart...",
-  ];
+  const main = document.getElementById("main") as HTMLDivElement;
 
   const headerInitial = document.getElementById(
     "header-initial",
@@ -33,6 +27,9 @@ const title = "Will you be my valentine?";
   const btnGroup = document.getElementById("button-group") as HTMLDivElement;
   const btnYes = document.getElementById("btn-yes") as HTMLButtonElement;
   const btnNo = document.getElementById("btn-no") as HTMLButtonElement;
+
+  let currentIndex = 0;
+  const arrTextButtonNo = main.dataset.rejectionText?.split(",") ?? [];
 
   const toggleHeader = () => {
     headerInitial.classList.add("hidden");
@@ -65,15 +62,17 @@ const title = "Will you be my valentine?";
 <BaseLayout title={title}>
   <main
     class="w-full min-h-dvh flex flex-col gap-4 items-center justify-center p-4 bg-primary text-primary-mono"
+    id="main"
+    data-rejection-text={rejectionText}
   >
     <section
       id="header-initial"
       class="flex flex-col gap-4 items-center justify-center"
     >
-      <h1 class="text-6xl font-meow">Will you be my valentine?</h1>
+      <h1 class="text-6xl font-meow">{openingPhrase}</h1>
       <Image
-        src={mochaLoveYou}
-        alt="Mocha loves you"
+        src={pendingImage}
+        alt={"Pending Image"}
         width={480}
         height={380}
         class="opacity-75 pr-8 rounded-[2rem] mx-auto w-[480px] h-[380px]"
@@ -84,10 +83,10 @@ const title = "Will you be my valentine?";
       id="header-yes"
       class="flex-col gap-4 items-center justify-center hidden"
     >
-      <h1 class="text-6xl font-meow">Yay, Love you too - xoxo</h1>
+      <h1 class="text-6xl font-meow">{acceptedPhrase}</h1>
       <Image
-        src={milkMochaHug}
-        alt="Mocha loves you"
+        src={acceptedImage}
+        alt="Accepted Image"
         width={480}
         height={380}
         class="opacity-75 rounded-[2rem] mx-auto w-[480px] h-[380px]"
@@ -98,12 +97,12 @@ const title = "Will you be my valentine?";
       <button
         id="btn-yes"
         class="text-3xl py-2 px-8 rounded-xl bg-secondary hover:bg-secondary-mono transition-colors duration-300"
-        >Yes</button
+        >{acceptText}</button
       >
       <button
         id="btn-no"
         class="text-3xl py-2 px-8 rounded-xl bg-tertiary hover:bg-tertiary-mono transition-colors duration-300"
-        >No</button
+        >{rejectionText[0]}</button
       >
     </section>
 

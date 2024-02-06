@@ -14,3 +14,7 @@ Inspired from this [website](https://valentine.mewtru.com/)
 
 - Astro
 - Tailwind
+
+## How to modify?
+
+- Just read `src/content/loves/main.md` to change the text / image
