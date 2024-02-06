@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/base.astro";
 import mochaLoveYou from "@/assets/mocha-love-you.gif";
 import milkMochaHug from "@/assets/milk-mocha-hug.gif";
+import github from "@/assets/github.svg";
 
 const title = "Will you be my valentine?";
 ---
@@ -104,6 +105,21 @@ const title = "Will you be my valentine?";
         class="text-3xl py-2 px-8 rounded-xl bg-tertiary hover:bg-tertiary-mono transition-colors duration-300"
         >No</button
       >
+    </section>
+
+    <section id="footer">
+      <a
+        href="https://github.com/withered-flowers/apps-valentine-showcase"
+        class="text-primary-mono transition-colors duration-300 flex gap-2 items-center justify-center bg-secondary-mono hover:bg-tertiary-mono hover:text-black p-3 rounded-xl"
+      >
+        <Image
+          src={github}
+          alt="Github"
+          densities={[1]}
+          class="w-8 h-8 opacity-50"
+        />
+        <span class="text-black opacity-50">Github (Source Code)</span>
+      </a>
     </section>
   </main>
 </BaseLayout>
