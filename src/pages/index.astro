@@ -1,16 +1,109 @@
 ---
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/base.astro";
+import mochaLoveYou from "@/assets/mocha-love-you.gif";
+import milkMochaHug from "@/assets/milk-mocha-hug.gif";
 
+const title = "Will you be my valentine?";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<script>
+  let currentIndex = 0;
+  const arrTextButtonNo = [
+    "No",
+    "You sure?",
+    "Really sure?",
+    "Positive??",
+    "Pwetty pwease?",
+    "Think about it?",
+    "If you say no, I'll be sad T_T",
+    "So sad ...",
+    "So so so sad...",
+    "Ok fine, I'll stop asking",
+    "Just kidding, PLEASE SAY YES",
+    "You break my heart...",
+  ];
+
+  const headerInitial = document.getElementById(
+    "header-initial",
+  ) as HTMLDivElement;
+  const headerYes = document.getElementById("header-yes") as HTMLDivElement;
+
+  const btnGroup = document.getElementById("button-group") as HTMLDivElement;
+  const btnYes = document.getElementById("btn-yes") as HTMLButtonElement;
+  const btnNo = document.getElementById("btn-no") as HTMLButtonElement;
+
+  const toggleHeader = () => {
+    headerInitial.classList.add("hidden");
+
+    headerYes.classList.remove("hidden");
+    headerYes.classList.add("flex");
+
+    btnGroup.classList.add("hidden");
+
+    currentIndex = 0;
+    btnNo.textContent =
+      arrTextButtonNo[currentIndex % arrTextButtonNo.length] ?? "";
+  };
+
+  const loopButtonText = () => {
+    currentIndex += 1;
+    btnNo.textContent =
+      arrTextButtonNo[currentIndex % arrTextButtonNo.length] ?? "";
+
+    btnYes.style.padding = `${1 + currentIndex * 0.2}rem ${
+      1 + currentIndex * 0.4
+    }rem`;
+    btnYes.style.fontSize = `${3 + currentIndex * 0.2}rem`;
+  };
+
+  btnYes.addEventListener("click", toggleHeader);
+  btnNo.addEventListener("click", loopButtonText);
+</script>
+
+<BaseLayout title={title}>
+  <main
+    class="w-full min-h-dvh flex flex-col gap-4 items-center justify-center p-4 bg-primary text-primary-mono"
+  >
+    <section
+      id="header-initial"
+      class="flex flex-col gap-4 items-center justify-center"
+    >
+      <h1 class="text-6xl font-meow">Will you be my valentine?</h1>
+      <Image
+        src={mochaLoveYou}
+        alt="Mocha loves you"
+        width={480}
+        height={380}
+        class="opacity-75 pr-8 rounded-[2rem] mx-auto w-[480px] h-[380px]"
+      />
+    </section>
+
+    <section
+      id="header-yes"
+      class="flex-col gap-4 items-center justify-center hidden"
+    >
+      <h1 class="text-6xl font-meow">Yay, Love you too - xoxo</h1>
+      <Image
+        src={milkMochaHug}
+        alt="Mocha loves you"
+        width={480}
+        height={380}
+        class="opacity-75 rounded-[2rem] mx-auto w-[480px] h-[380px]"
+      />
+    </section>
+
+    <section id="button-group" class="font-rancho">
+      <button
+        id="btn-yes"
+        class="text-3xl py-2 px-8 rounded-xl bg-secondary hover:bg-secondary-mono transition-colors duration-300"
+        >Yes</button
+      >
+      <button
+        id="btn-no"
+        class="text-3xl py-2 px-8 rounded-xl bg-tertiary hover:bg-tertiary-mono transition-colors duration-300"
+        >No</button
+      >
+    </section>
+  </main>
+</BaseLayout>
