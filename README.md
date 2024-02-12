@@ -22,7 +22,14 @@ Inspired from this [website](https://valentine.mewtru.com/)
 - [COLOR] Just modify it directly on `tailwind.config.mjs`
 - [FONT] Just modify it directly on `font.css` and `tailwind.config.mjs`
 
+## How to develop?
+
+- Using `nodejs`
+- Don't forget to `npm install`
+- Just run `npm run dev`
+
 ## How to deploy?
+
 - Vercel [difficulty: EASY]
   - Forked this repo to your own account
   - Using your [Vercel](https://vercel.com) Account which already bind to Git(hub/lab)
@@ -32,6 +39,25 @@ Inspired from this [website](https://valentine.mewtru.com/)
   - Using your [Netlify](https://netlify.com) Account which already bind to Git(hub/lab)
   - next next next finish and deployed
 - Github Pages [difficulty: NOT-SO-EASY]
-  - Before you deploy to Github Pages, please read [This Documentation](https://docs.astro.build/en/guides/deploy/github/)
-  - `workflows/deploy.yml` is already configured, you just need to modify `astro.config.mjs` (`base` and `site`)
-  - Don't forget to enable Github Pages for the Forked Repo based on Github Actions !
+  - Absolutely needed: Github Account
+  - Fork This Repo to your github account
+  - Go to Repository `Settings` -> `Pages` -> `Build and Deployment (Source)` and choose `Github Actions (Beta)`
+  - Modify file `astro.config.mjs` (`base` and `site`)
+    ```js
+    import { defineConfig } from 'astro/config';
+
+    import tailwind from "@astrojs/tailwind";
+
+    // https://astro.build/config
+    export default defineConfig({
+      integrations: [tailwind()],
+      // 'https://<your-github-account>.github.io'
+      site: 'https://myaccount-github.io'
+      // this will refer to the name of the repository, don't forget the slash
+      base: '/apps-valentine-showcase'
+    });
+    ```
+  - Commit and Push, Actions will be triggered, just wait for the deployment done
+  - You can access it via `https://my-account.github.io/apps-valentine-showcase
+  - Based on [This Documentation](https://docs.astro.build/en/guides/deploy/github/)
+  
