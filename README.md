@@ -24,13 +24,14 @@ Inspired from this [website](https://valentine.mewtru.com/)
 
 ## How to deploy?
 - Vercel [difficulty: EASY]
-  - Using your own git repo
-  - Using your Vercel Account which already bind to Git(hub/lab)
+  - Forked this repo to your own account
+  - Using your [Vercel](https://vercel.com) Account which already bind to Git(hub/lab)
   - next next next finish, and deployed !
 - Netlify [difficulty: EASY]
-  - Using your own git repo, 
-  - Using your Netlify Account which already bind to Git(hub/lab)
+  - Fork this repo to your own account
+  - Using your [Netlify](https://netlify.com) Account which already bind to Git(hub/lab)
   - next next next finish and deployed
 - Github Pages [difficulty: NOT-SO-EASY]
-  - Before you deploy to Github Pages, please read [This Website](https://docs.astro.build/en/guides/deploy/github/)
-  - `workflows/deploy.yml` is already configured, you just need to modify `astro.config.mjs`
+  - Before you deploy to Github Pages, please read [This Documentation](https://docs.astro.build/en/guides/deploy/github/)
+  - `workflows/deploy.yml` is already configured, you just need to modify `astro.config.mjs` (`base` and `site`)
+  - Don't forget to enable Github Pages for the Forked Repo based on Github Actions !
